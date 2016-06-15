@@ -1,0 +1,12 @@
+{
+  "name": "GoogleCalendar",
+  "version": "1.0.0",
+  "main": "main.js",
+  "productName": "Google Calendar",
+  "devDependencies": {
+    "electron-packager": "^7.0.3"
+  },
+  "scripts": {
+    "build": "electron-packager . --icon=calendar.icns --platform=darwin --arch=x64 --version=0.37.2 --overwrite"
+  }
+}
