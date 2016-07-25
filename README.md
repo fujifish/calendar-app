@@ -19,4 +19,4 @@ Copy the built application `Google Calendar.app` from `Google Calendar-darwin-x6
 
 ## License
 
-The MIT license. Copyright 2016 fujifish.
+The MIT license. Copyright (c) 2016 fujifish.
