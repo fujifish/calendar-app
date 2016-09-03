@@ -7,10 +7,10 @@
 
   <script>
 
-    var remote = require('remote');
-    var app = remote.require('app');
-    var shell = require('shell');
-    var renderer = require('electron').ipcRenderer;
+    const {remote, shell, ipcRenderer} = require('electron');
+    const fs = require('fs');
+    var app = remote.app;
+    var renderer = ipcRenderer;
     var webview;
     var reminders;
 
@@ -37,14 +37,14 @@
       });
 
       webview.addEventListener('new-window', function(e) {
+        e.preventDefault();
         var url = e.url;
         if (url.indexOf('https://accounts.google.com/AddSession') === 0) {
           webview.src = url;
           return;
         }
 
-        if (url.indexOf('https://calendar.google.com/') === 0) {
-          webview.src = url;
+        if (url.indexOf('https://calendar.google.com/calendar/') === 0) {
           return;
         }
 
@@ -52,7 +52,6 @@
           url = 'https://calendar.google.com/calendar/' + url;
         }
         shell.openExternal(url);
-        event.preventDefault();
       });
 
       webview.addEventListener('ipc-message', function(e) {
@@ -87,6 +86,7 @@
           window.alert = function() {
             new Notification(arguments[0]);
           };
+
         }
         webview.executeJavaScript('(' + hookupBase.toString() + ')();');
       });
@@ -104,8 +104,10 @@
   <webview
       disablewebsecurity
       nodeintegration
+      plugins
       id="gcalendar-web-view"
       src="https://calendar.google.com/calendar/"
+      preload="./spellchecker.js"
       style="height:100%; margin:0; padding: 0;">
   </webview>
 

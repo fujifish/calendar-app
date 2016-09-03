@@ -8,6 +8,8 @@ Google Calendar app based on Electron
 
 ## How to Build
 
+_Note: requires node v6_
+
 ```
 clone https://github.com/fujifish/calendar-app.git
 cd calendar-app
@@ -16,6 +18,11 @@ npm run build
 ```
 
 Copy the built application `Google Calendar.app` from `Google Calendar-darwin-x64` to your Applications directory.
+
+## Troubleshooting
+
+You might need to run `electron-rebuild --version 1.3.5` to make sure electron is built against the correct 
+node version headers.
 
 ## License
 
